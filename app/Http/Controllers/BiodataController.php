@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Biodata;
-
 class BiodataController extends Controller
 {
     /**
@@ -26,7 +23,7 @@ class BiodataController extends Controller
      */
     public function create()
     {
-        //
+        return view('biodata.create');
     }
 
     /**
@@ -37,7 +34,14 @@ class BiodataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          'namaSiswa' => 'required',
+          'alamatSiswa' => 'required'
+        ]);
+
+        Biodata::create($request->all());
+        return redirect()->route('biodata.index')
+                        ->with('success', 'new biodata created successfully');
     }
 
     /**
@@ -48,7 +52,8 @@ class BiodataController extends Controller
      */
     public function show($id)
     {
-        //
+        $biodata = Biodata::find($id);
+        return view('biodata.detail', compact('biodata'));
     }
 
     /**
@@ -59,7 +64,8 @@ class BiodataController extends Controller
      */
     public function edit($id)
     {
-        //
+        $biodata = Biodata::find($id);
+        return view('biodata.edit', compact('biodata'));
     }
 
     /**
@@ -71,7 +77,16 @@ class BiodataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'namaSiswa' => 'required',
+        'alamatSiswa' => 'required'
+      ]);
+      $biodata = Biodata::find($id);
+      $biodata->namaSiswa = $request->get('namaSiswa');
+      $biodata->alamatSiswa = $request->get('alamatSiswa');
+      $biodata->save();
+      return redirect()->route('biodata.index')
+                      ->with('success', 'Biodata siswa updated successfully');
     }
 
     /**
@@ -82,6 +97,9 @@ class BiodataController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $biodata = Biodata::find($id);
+        $biodata->delete();
+        return redirect()->route('biodata.index')
+                        ->with('success', 'Biodata siswa deleted successfully');
     }
 }
