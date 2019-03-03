@@ -11,7 +11,7 @@
       <div class="alert alert-danger">
         <strong>Whoops! </strong> there where some problems with your input.<br>
         <ul>
-          @foreach ($errors as $error)
+          @foreach ($errors->all() as $error)
             <li>{{$error}}</li>
           @endforeach
         </ul>
