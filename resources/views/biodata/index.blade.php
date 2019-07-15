@@ -6,6 +6,7 @@
       <div class="col-md-10">
         <h3>List Biodata Siswa</h3>
       </div>
+
       <div class="col-sm-2">
         <a class="btn btn-sm btn-success" href="{{ route('biodata.create') }}">Create New Biodata</a>
       </div>

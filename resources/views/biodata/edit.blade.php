@@ -26,6 +26,7 @@
           <strong>Nama Siswa :</strong>
           <input type="text" name="namaSiswa" class="form-control" value="{{$biodata->namaSiswa}}">
         </div>
+
         <div class="col-md-12">
           <strong>Alamat Siswa :</strong>
           <textarea class="form-control" name="alamatSiswa" rows="8" cols="80">{{$biodata->alamatSiswa}}</textarea>
